@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Yasiru
  */
-public class Tank extends Thread {
+public class TankMain extends Thread {
 
     /**
      * @param args the command line arguments
@@ -25,7 +25,7 @@ public class Tank extends Thread {
     ServerSocket serverSocket;
     Socket socket;
     TankClient cli;
-    public Tank(TankClient client) throws IOException{
+    public TankMain(TankClient client) throws IOException{
         serverSocket=new ServerSocket(7000);
         //serverSocket.setSoTimeout(100000);
         this.cli=client;
@@ -49,7 +49,7 @@ public class Tank extends Thread {
                 }
                  
             } catch (IOException ex) {
-                Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TankMain.class.getName()).log(Level.SEVERE, null, ex);
             }
            
         }
@@ -57,10 +57,10 @@ public class Tank extends Thread {
     public static void main(String[] args) {
         TankClient tankClient=new TankClient();
         try {
-            Tank tankServer=new Tank(tankClient);
+            TankMain tankServer=new TankMain(tankClient);
             tankServer.start();
         } catch (IOException ex) {
-            Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TankMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

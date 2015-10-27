@@ -27,12 +27,12 @@ public class TankMain extends Thread {
     TankClient client;
     public TankMain(TankClient client) throws IOException{
         serverSocket=new ServerSocket(7000);
-        //serverSocket.setSoTimeout(100000);
+        
         this.client=client;
     }
     @Override
     public void run(){
-        client.run("JOIN#");//request to join the game server
+        client.run("JOIN#");//this is the request to join the game server
         
         while(true){
             try {

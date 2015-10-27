@@ -20,7 +20,7 @@ public class TankClient extends Thread {
     private Socket socket;
     private DataOutputStream outstream;
     private ServerSocket serverSocket;
-private boolean connect() {
+private boolean connect() { //connect to the server
 		try {
 			socket = new Socket("localhost", 6000);
 			outstream = new DataOutputStream(socket.getOutputStream());

@@ -33,7 +33,7 @@ public class TankMap {
         ArrayList<String> brick_pos = new ArrayList<String>();
         ArrayList<String> stone_pos = new ArrayList<String>();
         ArrayList<String> water_pos = new ArrayList<String>();
-        //String dtail="I:P0:5,7;1,3;6,8;8,7;0,4;2,6:4,8;3,2;7,1;9,3;7,4;4,2;8,1;3,6;5,8:6,2;3,1;1,7;1,2;4,7;9,2;5,4;7,2;8,6;2,4#";
+        
 String new_add=address.substring(0, address.length()-1);// to remove last # mark
         StringTokenizer str = new StringTokenizer(new_add, ":");
         I = str.nextToken();//check first value I,G, S etc
@@ -80,7 +80,7 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         printMap();
          
     }
-    private static void printMap(){
+    private static void printMap(){ //print the map in the console
         for(int i=0;i<mapMax;i++){
             for(int j=0;j<mapMax;j++){
                 System.out.print(map[i][j] +"  ");
@@ -89,7 +89,7 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
          }
         
     }
-    public static void updateMap(String G){
+    public static void updateMap(String G){ //update map details
         String raw_st = G.substring(2,G.length());
         
        
@@ -106,7 +106,7 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         
     
 }
-    private static void playerUpdateStatus(String P){
+    private static void playerUpdateStatus(String P){ //update the player status
         
         
             ArrayList<String> tokens=new ArrayList<String>();
@@ -120,26 +120,26 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
             
             
             map[y][x]=tokens.get(0);
-            if("P0".equals(tokens.get(0))){
+            if("Player1".equals(tokens.get(0))){
                 Player1 =tokens;
             }
-            else if("P1".equals(tokens.get(0))){
+            else if("Player2".equals(tokens.get(0))){
                 Player2 =tokens;
             }
-            else if("P2".equals(tokens.get(0))){
+            else if("Player3".equals(tokens.get(0))){
                 Player3 =tokens;
             }
-            else if("P3".equals(tokens.get(0))){
+            else if("Player4".equals(tokens.get(0))){
                 Player4 =tokens;
             }
-            else if("P4".equals(tokens.get(0))){
+            else if("Player5".equals(tokens.get(0))){
                 Player5 =tokens;
             }
             printMap();
             System.out.println(Player1);
             System.out.println(Player2);
         }
-    public static void getLifePacks(String L){
+    public static void getLifePacks(String L){ //this is about life packets
         
         String details[]=L.split(":");
         String[] positions =details[0].split(",");

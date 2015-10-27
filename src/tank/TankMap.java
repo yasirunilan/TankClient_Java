@@ -16,17 +16,17 @@ public class TankMap {
    static int mapMax=10;
    static String map[][]=new String[mapMax][mapMax];
    static int x=0,y=0;
-   static ArrayList<String> P0;
-   static ArrayList<String> P1;
-   static ArrayList<String> P2;
-   static ArrayList<String> P3;
-   static ArrayList<String> P4;
+   static ArrayList<String> Player1;
+   static ArrayList<String> Player2;
+   static ArrayList<String> Player3;
+   static ArrayList<String> Player4;
+   static ArrayList<String> Player5;
    
     
     public static void createMap(String address){
         
         String I;
-        String playerNum;
+        String playerID;
         String brick;
         String stone;
         String water;
@@ -37,7 +37,7 @@ public class TankMap {
 String new_add=address.substring(0, address.length()-1);// to remove last # mark
         StringTokenizer str = new StringTokenizer(new_add, ":");
         I = str.nextToken();//check first value I,G, S etc
-        playerNum = str.nextToken();//get player names
+        playerID = str.nextToken();//get player names
         brick = str.nextToken();//get bricks pattern
         stone = str.nextToken();//get stones pattern
         water = str.nextToken();//get water patterns
@@ -121,23 +121,23 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
             
             map[y][x]=tokens.get(0);
             if("P0".equals(tokens.get(0))){
-                P0 =tokens;
+                Player1 =tokens;
             }
             else if("P1".equals(tokens.get(0))){
-                P1 =tokens;
+                Player2 =tokens;
             }
             else if("P2".equals(tokens.get(0))){
-                P2 =tokens;
+                Player3 =tokens;
             }
             else if("P3".equals(tokens.get(0))){
-                P3 =tokens;
+                Player4 =tokens;
             }
             else if("P4".equals(tokens.get(0))){
-                P4 =tokens;
+                Player5 =tokens;
             }
             printMap();
-            System.out.println(P0);
-            System.out.println(P1);
+            System.out.println(Player1);
+            System.out.println(Player2);
         }
     public static void getLifePacks(String L){
         

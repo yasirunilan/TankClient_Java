@@ -18,16 +18,14 @@ import java.util.logging.Logger;
  */
 public class TankClient extends Thread {
     private Socket socket;
-    private DataOutputStream dos;
-    private String ip="localhost";
+    private DataOutputStream outstream;
     private ServerSocket serverSocket;
-    private int port=6000;
 private boolean connect() {
 		try {
-			socket = new Socket(ip, port);
-			dos = new DataOutputStream(socket.getOutputStream());
+			socket = new Socket("localhost", 6000);
+			outstream = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
-			System.out.println("Unable to connect to the address: ");
+			System.out.println("Can't connect to the server ");
 			return false;
 		}
 		System.out.println("Successfully connected to the server.");
@@ -38,8 +36,8 @@ private boolean connect() {
     public void run(String msg){
      connect();
         try {        
-            dos.writeBytes(msg);
-            dos.flush();
+            outstream.writeBytes(msg);
+            outstream.flush();
             socket.close();
         } catch (IOException ex) {
             Logger.getLogger(TankClient.class.getName()).log(Level.SEVERE, null, ex);

@@ -24,28 +24,28 @@ public class TankMain extends Thread {
      */
     ServerSocket serverSocket;
     Socket socket;
-    TankClient cli;
+    TankClient client;
     public TankMain(TankClient client) throws IOException{
         serverSocket=new ServerSocket(7000);
         //serverSocket.setSoTimeout(100000);
-        this.cli=client;
+        this.client=client;
     }
     @Override
     public void run(){
-        cli.run("JOIN#");//request to join the game server
+        client.run("JOIN#");//request to join the game server
         
         while(true){
             try {
                 socket=serverSocket.accept();
                 BufferedReader msg=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String s=msg.readLine();
-                System.out.println(s);
-                if(s.charAt(0)=='I'&&s.charAt(1)==':'){//for priority I
-                    TankMap.createMap(s);
+                String string=msg.readLine();
+                System.out.println(string);
+                if(string.charAt(0)=='I'&&string.charAt(1)==':'){//for priority I
+                    TankMap.createMap(string);
                 }
-                if(s.charAt(0)=='G'&&s.charAt(1)==':'){
+                if(string.charAt(0)=='G'&&string.charAt(1)==':'){
                     
-                    TankMap.updateMap(s);
+                    TankMap.updateMap(string);
                 }
                  
             } catch (IOException ex) {

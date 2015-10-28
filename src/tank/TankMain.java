@@ -27,7 +27,6 @@ public class TankMain extends Thread {
     TankClient client;
     public TankMain(TankClient client) throws IOException{
         serverSocket=new ServerSocket(7000);
-        
         this.client=client;
     }
     @Override

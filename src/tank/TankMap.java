@@ -30,9 +30,9 @@ public class TankMap {
         String brick;
         String stone;
         String water;
-        ArrayList<String> brick_pos = new ArrayList<String>();
-        ArrayList<String> stone_pos = new ArrayList<String>();
-        ArrayList<String> water_pos = new ArrayList<String>();
+        ArrayList<String> brick_pos = new ArrayList<>();
+        ArrayList<String> stone_pos = new ArrayList<>();
+        ArrayList<String> water_pos = new ArrayList<>();
         
 String new_add=address.substring(0, address.length()-1);// to remove last # mark
         StringTokenizer str = new StringTokenizer(new_add, ":");
@@ -59,24 +59,24 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
             for(int j=0;j<mapMax;j++){
                 map[i][j]="0";
             } }
-        for(int i=0;i<brick_pos.size();i++){
-            String positions[]=brick_pos.get(i).split(",");
-            x=Integer.parseInt(positions[0]);
-            y=Integer.parseInt(positions[1]);
-            map[y][x]="1";//1 for brick
-        }
-        for(int i=0;i<stone_pos.size();i++){
-            String positions[]=stone_pos.get(i).split(",");
-            x=Integer.parseInt(positions[0]);
-            y=Integer.parseInt(positions[1]);
-            map[y][x]="2";//2 for stone
-        }
-        for(int i=0;i<water_pos.size();i++){
-            String positions[]=water_pos.get(i).split(",");
-            x=Integer.parseInt(positions[0]);
-            y=Integer.parseInt(positions[1]);
-            map[y][x]="3";//3 for water
-        }
+       for (String brick_po : brick_pos) {
+           String[] positions = brick_po.split(",");
+           x=Integer.parseInt(positions[0]);
+           y=Integer.parseInt(positions[1]);
+           map[y][x]="1";//1 for brick
+       }
+       for (String stone_po : stone_pos) {
+           String[] positions = stone_po.split(",");
+           x=Integer.parseInt(positions[0]);
+           y=Integer.parseInt(positions[1]);
+           map[y][x]="2";//2 for stone
+       }
+       for (String water_po : water_pos) {
+           String[] positions = water_po.split(",");
+           x=Integer.parseInt(positions[0]);
+           y=Integer.parseInt(positions[1]);
+           map[y][x]="3";//3 for water
+       }
         printMap();
          
     }
@@ -93,10 +93,10 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         String raw_st = G.substring(2,G.length());
         
        
-        StringTokenizer upmap=new StringTokenizer(raw_st, ":");
-        for(int i=0;upmap.hasMoreTokens();i++){
+        StringTokenizer updateMap=new StringTokenizer(raw_st, ":");
+        for(int i=0;updateMap.hasMoreTokens();i++){
             
-            String k=upmap.nextToken();
+            String k=updateMap.nextToken();
             if(k.charAt(0)=='P'){
                 playerUpdateStatus(k);
             }
@@ -109,7 +109,7 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
     private static void playerUpdateStatus(String P){ //update the player status
         
         
-            ArrayList<String> tokens=new ArrayList<String>();
+            ArrayList<String> tokens=new ArrayList<>();
             StringTokenizer player=new StringTokenizer(P, ";");
             while(player.hasMoreTokens()){
                 tokens.add(player.nextToken());
@@ -120,21 +120,23 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
             
             
             map[y][x]=tokens.get(0);
-            if("Player1".equals(tokens.get(0))){
-                Player1 =tokens;
-            }
-            else if("Player2".equals(tokens.get(0))){
-                Player2 =tokens;
-            }
-            else if("Player3".equals(tokens.get(0))){
-                Player3 =tokens;
-            }
-            else if("Player4".equals(tokens.get(0))){
-                Player4 =tokens;
-            }
-            else if("Player5".equals(tokens.get(0))){
-                Player5 =tokens;
-            }
+            if(null != tokens.get(0))switch (tokens.get(0)) {
+           case "Player1":
+               Player1 =tokens;
+               break;
+           case "Player2":
+               Player2 =tokens;
+               break;
+           case "Player3":
+               Player3 =tokens;
+               break;
+           case "Player4":
+               Player4 =tokens;
+               break;
+           case "Player5":
+               Player5 =tokens;
+               break;
+       }
             printMap();
             System.out.println(Player1);
             System.out.println(Player2);

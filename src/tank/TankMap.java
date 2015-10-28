@@ -42,7 +42,8 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         stone = str.nextToken();//get stones pattern
         water = str.nextToken();//get water patterns
         System.out.println("I = "+I+" brick = "+brick+" stone = "+stone+" water = "+water);
-        
+//        System.out.println("I = "+I+" brick = "+brick+" stone = "+stone+" water = "+water);
+//        System.out.println("I = "+I+" brick = "+brick+" stone = "+stone+" water = "+water);
         StringTokenizer bri=new StringTokenizer(brick, ";");
         for(int i=0;bri.hasMoreTokens();i++){
             brick_pos.add(i, bri.nextToken());
@@ -57,25 +58,25 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         }
         for(int i=0;i<mapMax;i++){
             for(int j=0;j<mapMax;j++){
-                map[i][j]="0";
+                map[i][j]="N";
             } }
        for (String brick_po : brick_pos) {
            String[] positions = brick_po.split(",");
            x=Integer.parseInt(positions[0]);
            y=Integer.parseInt(positions[1]);
-           map[y][x]="1";//1 for brick
+           map[y][x]="B";//1 for brick
        }
        for (String stone_po : stone_pos) {
            String[] positions = stone_po.split(",");
            x=Integer.parseInt(positions[0]);
            y=Integer.parseInt(positions[1]);
-           map[y][x]="2";//2 for stone
+           map[y][x]="S";//2 for stone
        }
        for (String water_po : water_pos) {
            String[] positions = water_po.split(",");
            x=Integer.parseInt(positions[0]);
            y=Integer.parseInt(positions[1]);
-           map[y][x]="3";//3 for water
+           map[y][x]="W";//3 for water
        }
         printMap();
          

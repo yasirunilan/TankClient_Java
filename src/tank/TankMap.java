@@ -144,16 +144,30 @@ String new_add=address.substring(0, address.length()-1);// to remove last # mark
         }
     public static void getLifePacks(String L){ //this is about life packets
         
+        //System.out.println("details "+L);
         String details[]=L.split(":");
-        String[] positions =details[0].split(",");
+        String[] positions =details[1].split(",");
         x=Integer.parseInt(positions[0]);
         y=Integer.parseInt(positions[1]);
-        int time=Integer.parseInt(details[1].substring(0,(details[1]).length()-1));
-        System.out.println("LIFE PACK X  ="+  y+" Y =" +x+" time "+ time);
-        
+        map[y][x]="L";
+        int time=Integer.parseInt(details[2].substring(0,(details[2]).length()-1));
+        //System.out.println("LIFE PACK X  ="+  y+" Y =" +x+" time "+ time);
+        System.out.println("LIFE PACK X  ="+  y+" Y =" +x);
+        //System.out.println();
     }
 
     
-    
+    public static void getCoinPiles(String C){ //this is about life packets
+        
+        //System.out.println("details "+L);
+        String details[]=C.split(":");
+        String[] positions =details[1].split(",");
+        x=Integer.parseInt(positions[0]);
+        y=Integer.parseInt(positions[1]);
+        map[y][x]="C";
+        int time=Integer.parseInt(details[2].substring(0,(details[2]).length()-1));
+        //System.out.println("LIFE PACK X  ="+  y+" Y =" +x+" time "+ time);
+        System.out.println("COIN PILES X  ="+  y+" Y =" +x);
+    }
     
 }

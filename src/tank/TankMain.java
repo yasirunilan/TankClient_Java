@@ -31,13 +31,15 @@ public class TankMain extends Thread {
     }
     @Override
     public void run(){
-        client.run("JOIN#");//this is the request to join the game server
+        client.run("JOIN#");
+        //client.run("UP#");//this is the request to join the game server
         
-        while(true){
+        while(true){ 
             try {
                 socket=serverSocket.accept();
                 BufferedReader msg=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String string=msg.readLine();
+                //client.run("UP#");
                 System.out.println(string);
                 if(string.charAt(0)=='I'&&string.charAt(1)==':'){//for priority I
                     TankMap.createMap(string);
@@ -46,9 +48,17 @@ public class TankMain extends Thread {
                     
                     TankMap.updateMap(string);
                 }
+                if(string.charAt(0)=='L'&&string.charAt(1)==':'){
+                    
+                    TankMap.getLifePacks(string);
+                }
+                if(string.charAt(0)=='C'&&string.charAt(1)==':'){
+                    
+                    TankMap.getCoinPiles(string);
+                }
                  
             } catch (IOException ex) {
-                Logger.getLogger(TankMain.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(TankMain.class.getName()).log(Level.SEVERE, null, ex);
             }
            
         }
@@ -57,6 +67,8 @@ public class TankMain extends Thread {
         TankClient tankClient=new TankClient();
         try {
             TankMain tankServer=new TankMain(tankClient);
+            GUI gui=new GUI(tankClient);
+            gui.setVisible(true);
             tankServer.start();
         } catch (IOException ex) {
             Logger.getLogger(TankMain.class.getName()).log(Level.SEVERE, null, ex);
